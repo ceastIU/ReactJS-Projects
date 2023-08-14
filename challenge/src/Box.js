@@ -1,11 +1,20 @@
 import React from 'react'
 
-const Box = ({ color, setColor }) => {
+const Box = ({ color, hexValue, isDarkText }) => {
   return (
-    <div className='square' style={{backgroundColor: color}} >
-        <p>{color}</p>
-    </div>
+    <section 
+        className='square' 
+        style={{backgroundColor: color,
+        color: isDarkText ? "#000" : '#FFF'}} 
+    >
+        <p>{color ? color : "Empty Value"}</p>
+        <p>{hexValue ? hexValue : null}</p>
+    </section>
   )
+}
+
+Box.defaultPropts = {
+    color: "Empty Color Value"
 }
 
 export default Box
