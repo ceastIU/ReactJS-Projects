@@ -1,10 +1,11 @@
 import React from 'react';
 import Feed from './Feed';
-import { useStoreState } from 'easy-peasy';
+import { useContext } from 'react';
+import DataContext from './context/DataContext';
 
-const Home = ({ isLoading, fetchError}) => {
+const Home = () => {
 
-  const searchResults = useStoreState((state) => state.searchResults);
+  const { searchResults, fetchError, isLoading } = useContext(DataContext);
 
   return (
     <main className='Home'>
