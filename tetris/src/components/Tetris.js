@@ -8,6 +8,7 @@ const Tetris = ({ rows, columns, setGameOver }) => {
     const [board, setBoard] = useBoard({ rows, columns });
 
     return (
+        div.Ter
         <Board board={board} />
     )
 }
