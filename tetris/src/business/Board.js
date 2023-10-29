@@ -10,3 +10,11 @@ export const buildBoard = ({rows, columns}) => {
         size: { rows, columns }
     }
 }
+
+export const nextBoard = ({ board, player, resetPlayer, addLinesCleared }) => {
+    const { tetromino, position } = player;
+
+    let rows = board.rows.map((row) => 
+        row.map((cell) => (cell.occupied ? cell : {...defaultCell}))    
+    );
+}
