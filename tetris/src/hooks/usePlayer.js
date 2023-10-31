@@ -29,7 +29,8 @@ const buildPlayer = (previous) => {
     const resetPlayer = useCallback(() => {
       setPlayer((prev) => buildPlayer(prev));
     }, []);
-  
+    
+    
     return [player, setPlayer, resetPlayer];
   };
   
