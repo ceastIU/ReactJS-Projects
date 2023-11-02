@@ -28,6 +28,10 @@ export const buildBoard = ({ rows, columns }) => {
         rows,
         shape: tetromino.shape
       });
+    
+      if (player.collided || player.isFastDropping){
+         resetPlayer();
+      }
 
     return {
         rows,
