@@ -27,6 +27,12 @@ const attemptRotation = ({ board, player, setPlayer }) => {
         }
 }
 
+const attemptSwap = ({ board, player, setPlayer }) => {
+    let temp = player.hold
+    player.hold = player.tetromino
+    player.tetromino = temp
+}
+
 export const movePlayer = ({ delta,position, shape, board }) => {
     const desiredNextPosition = {
         row: position.row + delta.row,
@@ -101,8 +107,9 @@ export const playerController = ({
 
     if (action === Action.Rotate) {
         attemptRotation({ board, player, setPlayer });
-    }
-    else {
+    } else if (action === Action.Swap) {
+        attemptSwap({ board, player, setPlayer })
+    } else {
         attemptMovement({ board, player, setPlayer, action, setGameOver })
     }
 }
