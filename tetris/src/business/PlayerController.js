@@ -28,9 +28,13 @@ const attemptRotation = ({ board, player, setPlayer }) => {
 }
 
 const attemptSwap = ({ board, player, setPlayer }) => {
-    let temp = player.hold
-    player.hold = player.tetromino
-    player.tetromino = temp
+    let tetromino = player.hold
+    let hold = player.tetromino
+    setPlayer({
+        ...player,
+        tetromino,
+        hold
+    })
 }
 
 export const movePlayer = ({ delta,position, shape, board }) => {
