@@ -1,38 +1,14 @@
-import reactImg from "./assets/react-core-concepts.png";
-
+import Header from "./components/Header/Header";
 import { CORE_CONCEPTS } from "./data";
-const reactDescriptions = ["Fundamental", "Crucial", "Core"];
-
-function getRandomInt(max) {
-  return Math.floor(Math.random() * (max + 1));
-}
-
-function Header() {
-  const description =
-    reactDescriptions[getRandomInt(reactDescriptions.length - 1)];
-  return (
-    <header>
-      <img src={reactImg} alt="Stylized atom" />
-      <h1>React Essentials</h1>
-      <p>
-        {description} React concepts you will need for almost any app you are
-        going to build!
-      </p>
-    </header>
-  );
-}
-
-function CoreConcepts({ imgSrc, title, description }) {
-  return (
-    <li key={title}>
-      <img src={imgSrc} alt={title} />
-      <h3>{title}</h3>
-      <p>{description}</p>
-    </li>
-  );
-}
+import CoreConcepts from "./components/CoreConcepts";
+import TabButton from "./components/TabButton";
 
 function App() {
+  function handleClick(selectedButton) {
+    // selectedButton => 'components','jsx','props','state'
+    console.log("I was clicked", selectedButton);
+  }
+
   const coreConcepts = CORE_CONCEPTS.map((item) => (
     <CoreConcepts
       title={item.title}
@@ -50,7 +26,18 @@ function App() {
           <h2>Core Concepts</h2>
           <ul>{coreConcepts}</ul>
         </section>
-        <h2>Time to get started!</h2>
+        <section id="examples">
+          <h2>Examples</h2>
+          <menu>
+            <TabButton onClick={() => handleClick("components")}>
+              Components
+            </TabButton>
+            <TabButton onClick={() => handleClick("jsx")}>JSX</TabButton>
+            <TabButton onClick={() => handleClick("props")}>Props</TabButton>
+            <TabButton onClick={() => handleClick("state")}>State</TabButton>
+          </menu>
+          {/* Dynamic Content */}
+        </section>
       </main>
     </div>
   );
