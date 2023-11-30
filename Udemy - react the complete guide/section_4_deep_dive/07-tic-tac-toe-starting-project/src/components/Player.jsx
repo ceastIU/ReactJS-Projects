@@ -1,7 +1,11 @@
 import { useState } from "react";
-export default function Player({ name, symbol }) {
+export default function Player({ name, symbol, isActive }) {
   const [playerName, setPlayerName] = useState(name);
   const [isEditing, setIsEditing] = useState(false);
+
+  let handleChange = (event) => {
+    setPlayerName(event.target.value);
+  };
 
   let buttonLabel = isEditing ? "Save" : "Edit";
 
@@ -9,14 +13,7 @@ export default function Player({ name, symbol }) {
 
   if (isEditing) {
     playerField = (
-      <input
-        type="text"
-        onChange={(e) => {
-          setPlayerName(e.target.value);
-        }}
-        value={playerName}
-        required
-      />
+      <input type="text" onChange={handleChange} value={playerName} required />
     );
   }
 
@@ -25,7 +22,7 @@ export default function Player({ name, symbol }) {
   };
 
   return (
-    <li>
+    <li className={isActive ? "active" : undefined}>
       <span className="player">
         {playerField}
         <span className="player-symbol">{symbol}</span>
