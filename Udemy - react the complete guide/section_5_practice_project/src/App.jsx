@@ -1,7 +1,13 @@
+import Results from "./components/Results";
+import UserInput from "./components/UserInput";
+
 function App() {
   return (
     <main>
-      <div id="user-input"></div>
+      {/* User Input */}
+      <UserInput />
+      <Results />
+      {/* Results */}
     </main>
   );
 }
