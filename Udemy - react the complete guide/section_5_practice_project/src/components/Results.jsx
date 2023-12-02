@@ -1,14 +1,23 @@
 import React from "react";
-import { calculateInvestmentResults } from "../util/investment";
+import { calculateInvestmentResults, formatter } from "../util/investment";
 
 const Results = ({ userInput }) => {
   const data = calculateInvestmentResults(userInput);
-  const elements = data.map((item) => (
-    <tr>
-      <td>{item.year}</td>
-      <td>{item.year}</td>
-    </tr>
-  ));
+  let totalInvestment = userInput.initialInvestment;
+  let totalInterest = 0;
+  const elements = data.map((item) => {
+    totalInvestment += item.annualInvestment;
+    totalInterest += item.interest;
+    return (
+      <tr>
+        <td>{item.year}</td>
+        <td>{formatter.format(item.valueEndOfYear)}</td>
+        <td>{formatter.format(item.interest)}</td>
+        <td>{formatter.format(totalInterest)}</td>
+        <td>{formatter.format(totalInvestment)}</td>
+      </tr>
+    );
+  });
   return (
     <table className="center" id="result">
       <thead>
@@ -20,7 +29,7 @@ const Results = ({ userInput }) => {
           <th>Invested Capital</th>
         </tr>
       </thead>
-      <tbody>{/* dynamic content */}</tbody>
+      <tbody>{elements}</tbody>
     </table>
   );
 };
